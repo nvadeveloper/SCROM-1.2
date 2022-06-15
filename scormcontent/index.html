@@ -1,0 +1,89 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script language="JavaScript1.2" src="../scormdriver/scormdriver.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <main>
+            <section>
+                <div class="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <p class="text-3xl font-bold mt-10">Lorem ipsum dolor sit amet</p>
+                    <p class="my-6">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="my-6">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <img
+                        class="my-6"
+                        src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"
+                    />
+                    <div class="flex gap-4 mb-10">
+                        <button
+                            onclick="btnClose()"
+                            class="px-4 py-2 rounded-xl text-white bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+                        >
+                            Close Course
+                        </button>
+
+                        <button
+                            onclick="btnCompleteCourse()"
+                            class="px-4 py-2 rounded-xl text-white bg-purple-500 hover:bg-purple-600 active:bg-purple-700 focus:outline-none focus:ring focus:ring-purple-300"
+                        >
+                            Complete Course
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script type="text/javascript">
+            const btnClose = () => {
+                try {
+                    SCORM_Finish();
+                } catch {
+                    console.log('ERROR on SCORM_Finish');
+                }
+            };
+
+            const btnCompleteCourse = () => {
+                try {
+                    SCORM_CallLMSInitialize();
+                } catch {
+                    console.log('ERROR on SCORM_CallLMSInitialize');
+                }
+
+                try {
+                    SCORM_SetCompleted();
+                } catch {
+                    console.log('ERROR on SCORM_SetCompleted');
+                }
+
+                try {
+                    SCORM_SetPassed();
+                } catch {
+                    console.log('ERROR on SCORM_SetPassed');
+                }
+
+                try {
+                    SCORM_SetScore(77, 100, 0);
+                } catch {
+                    console.log('ERROR on SCORM_SetScore');
+                }
+            };
+        </script>
+    </body>
+</html>
